@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  scylla-local-1:
+    image: scylladb/scylla
+    container_name: scylla-local-1
+    ports: 
+      - "9042:9042"
