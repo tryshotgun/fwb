@@ -5,7 +5,10 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import helmet from 'helmet';
 import logger from 'morgan';
+import dotenv from 'dotenv';
 import * as routes from './routes';
+
+dotenv.config();
 
 const app = express();
 

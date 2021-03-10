@@ -7,6 +7,7 @@
 import debugPkg from 'debug';
 import http from 'http';
 import app from '../app';
+import { useHealthCheck } from '../routes/healthcheck';
 
 const debug = debugPkg('js/www:server');
 
@@ -22,6 +23,8 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+
+useHealthCheck(server);
 
 /**
  * Listen on provided port, on all network interfaces.
