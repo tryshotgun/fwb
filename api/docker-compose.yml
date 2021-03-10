@@ -6,3 +6,13 @@ services:
     container_name: scylla-local-1
     ports: 
       - "9042:9042"
+
+  scylla-local-2:
+    image: scylladb/scylla
+    container_name: scylla-local-2
+    command: --seeds=scylla-local-1
+
+  scylla-local-3:
+    image: scylladb/scylla
+    container_name: scylla-local-3
+    command: --seeds=scylla-local-1

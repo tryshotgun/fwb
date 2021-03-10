@@ -103,7 +103,4 @@ dist
 # TernJS port file
 .tern-port
 
-# VSCode Cassandra Workbench Extentsion configurations
-.cassandraWorkbench.jsonc
-
 .vscode
