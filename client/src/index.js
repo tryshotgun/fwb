@@ -16,7 +16,9 @@
 */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter, Route, Switch, Redirect,
+} from 'react-router-dom';
 
 // styles
 import '@fortawesome/fontawesome-free/css/all.min.css';
