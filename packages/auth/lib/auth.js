@@ -70,10 +70,9 @@ app.get('/callback', function (req, res) {
   var storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
-    res.redirect('/#' +
-      querystring.stringify({
-        error: 'state_mismatch'
-      }));
+    res.json({
+      error: 'state_mismatch'
+    });
   } else {
     res.clearCookie(stateKey);
     var authOptions = {
@@ -84,7 +83,7 @@ app.get('/callback', function (req, res) {
         grant_type: 'authorization_code'
       },
       headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+        'Authorization': 'Basic ' + Buffer(client_id + ':' + client_secret).toString('base64')
       },
       json: true
     };
@@ -108,8 +107,8 @@ app.get('/callback', function (req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.json({
-          access_token: access_token,
-          refresh_token: refresh_token
+          'access_token': access_token,
+          'refresh_token': refresh_token
         });
       } else {
         res.json({
