@@ -11,10 +11,10 @@ const request = require('request'); // "Request" library
 const cors = require('cors');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
-const dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config();
 
 if (dotenv.error) {
-  throw dotenv.error
+  throw dotenv.error;
 }
 
 const port = process.env.FWB_AUTH_PORT;
