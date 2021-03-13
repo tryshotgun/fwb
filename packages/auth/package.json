@@ -2,6 +2,7 @@
   "name": "@fwb/auth",
   "version": "0.0.1",
   "description": "The authentication service",
+  "private": true,
   "keywords": [
     "auth",
     "db",
@@ -27,7 +28,9 @@
   },
   "scripts": {
     "start": "node lib/auth.js",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "lint": "eslint lib/**"
+
   },
   "bugs": {
     "url": "https://github.com/tryshotgun/fwb/issues"
@@ -39,5 +42,10 @@
     "express": "^4.17.1",
     "querystring": "^0.2.1",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
   }
 }

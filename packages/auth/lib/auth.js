@@ -27,7 +27,7 @@ const redirect_uri = process.env.FWB_URL + ':' + process.env.FWB_AUTH_PORT + '/'
  * @param  {number} length The length of the string
  * @return {string} The generated string
  */
-const generateRandomString = function (length) {
+const generateRandomString = (length) => {
   let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -46,7 +46,7 @@ app.use(express.static(__dirname + '/public'))
   .use(cookieParser());
 
 /* Application requests authorization */
-app.get('/login', function (req, res) {
+app.get('/login', (req, res) => {
   let state = generateRandomString(16);
   res.cookie(stateKey, state);
 
@@ -64,7 +64,7 @@ app.get('/login', function (req, res) {
 
 /* Appication requests refresh and access tokens
   after checking the state parameter */
-app.get('/callback', function (req, res) {
+app.get('/callback', (req, res) => {
   const code = req.query.code || null;
   const state = req.query.state || null;
   const storedState = req.cookies ? req.cookies[stateKey] : null;
@@ -88,7 +88,7 @@ app.get('/callback', function (req, res) {
       json: true
     };
 
-    request.post(authOptions, function (error, response, body) {
+    request.post(authOptions, (error, response, body) => {
       if (!error && response.statusCode === 200) {
 
         const access_token = body.access_token;
@@ -103,7 +103,7 @@ app.get('/callback', function (req, res) {
         var result;
 
         // use the access token to access the Spotify Web API
-        request.get(options, function (error, response, body) {
+        request.get(options, (error, response, body) => {
           if (!error) {
             result = body;
             console.log(response.json());
@@ -129,7 +129,7 @@ app.get('/callback', function (req, res) {
 });
 
 /* Applicatin requests access token from refresh token */
-app.get('/refresh_token', function (req, res) {
+app.get('/refresh_token', (req, res) => {
   const refresh_token = req.query.refresh_token;
   const authOptions = {
     url: 'https://accounts.spotify.com/api/token',
@@ -141,9 +141,9 @@ app.get('/refresh_token', function (req, res) {
     json: true
   };
 
-  request.post(authOptions, function (error, response, body) {
+  request.post(authOptions, (error, response, body) => {
     if (!error && response.statusCode === 200) {
-      var access_token = body.access_token;
+      const access_token = body.access_token;
       res.send({
         'access_token': access_token
       });
