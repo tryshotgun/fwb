@@ -1,6 +1,6 @@
 {
   "name": "user",
-  "version": "1.0.0",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "main": "dist/bin/www.js",
   "scripts": {
