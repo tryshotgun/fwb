@@ -4,7 +4,7 @@ import { Container } from 'reactstrap';
 
 import DemoFooter from 'components/Footers/DemoFooter';
 import ProfileCard from 'components/Swipe/ProfileCard';
-import 'components/Swipe/ProfileCard.css';
+import 'assets/css/profile-card.css';
 
 const SwipePage = () => {
   const wrapper = useRef(null);
@@ -31,7 +31,7 @@ const SwipePage = () => {
             <div className="squares square5" />
             <div className="squares square6" />
             <div className="squares square7" />
-            <Container className="app">
+            <Container className="swipe-app">
               <ProfileCard />
             </Container>
           </div>
