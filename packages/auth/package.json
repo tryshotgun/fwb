@@ -29,8 +29,7 @@
   "scripts": {
     "start": "node lib/auth.js",
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "lint": "eslint lib/**"
-
+    "lint": "eslint ./lib/*.js ./__tests__/*.js"
   },
   "bugs": {
     "url": "https://github.com/tryshotgun/fwb/issues"
