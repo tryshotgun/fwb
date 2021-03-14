@@ -16,9 +16,7 @@
 */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter, Route, Switch, Redirect,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // styles
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -50,6 +48,7 @@ import ResetPage from 'views/examples/ResetPage.js';
 import InvoicePage from 'views/examples/InvoicePage.js';
 import CheckoutPage from 'views/examples/CheckoutPage.js';
 import ChatPage from 'views/examples/ChatPage.js';
+import SwipePage from 'views/examples/SwipePage';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -99,6 +98,7 @@ ReactDOM.render(
         render={(props) => <CheckoutPage {...props} />}
       />
       <Route path="/chat-page" render={(props) => <ChatPage {...props} />} />
+      <Route path="/swipe-page" render={(props) => <SwipePage {...props} />} />
       <Redirect from="/" to="/presentation" />
     </Switch>
   </BrowserRouter>,

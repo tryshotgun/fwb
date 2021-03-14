@@ -14,9 +14,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 // react plugin used to create charts
 import { Line } from 'react-chartjs-2';
+import constants from 'variables/constants.js';
 
 // reactstrap components
 import {
@@ -41,15 +43,39 @@ import { chartExample1 } from 'variables/charts.js';
 
 export default function LandingPage() {
   const wrapper = React.useRef(null);
-  React.useEffect(() => {
+  const { search } = useLocation(null);
+  const [response, setResponse] = useState(null);
+
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     wrapper.current.scrollTop = 0;
     document.body.classList.add('landing-page');
-    return function cleanup() {
+    return () => {
       document.body.classList.remove('landing-page');
     };
   }, []);
+
+  const getToken = useCallback(async () => {
+    if (!search) return;
+
+    const params = new URLSearchParams(search);
+    const code = params.get('code');
+    const state = params.get('state');
+
+    let response = await fetch(
+      `${constants.AUTH_API_HOST}:${constants.AUTH_API_PORT}${constants.AUTH_API_ENDPOINT}` +
+        new URLSearchParams({ code, state }),
+    );
+    response = await response.json();
+
+    setResponse(response);
+  }, [search]);
+
+  useEffect(() => {
+    getToken().catch(console.error);
+  }, [getToken]);
+
   return (
     <>
       <ColorNavbar />
@@ -89,9 +115,7 @@ export default function LandingPage() {
             <Row className="row-grid justify-content-between align-items-center text-left">
               <Col lg="6" md="6">
                 <h1 className="text-white">
-                  We keep your coin
-                  {' '}
-                  <br />
+                  We keep your coin <br />
                   <span className="text-white">secured</span>
                 </h1>
                 <p className="text-white mb-3">
@@ -250,9 +274,7 @@ export default function LandingPage() {
                 <Col md="6">
                   <div className="pl-md-5">
                     <h1>
-                      Large
-                      {' '}
-                      <br />
+                      Large <br />
                       Achivements
                     </h1>
                     <p>
@@ -272,8 +294,7 @@ export default function LandingPage() {
                       href="#pablo"
                       onClick={(e) => e.preventDefault()}
                     >
-                      Show all
-                      {' '}
+                      Show all{' '}
                       <i className="tim-icons icon-minimal-right text-info" />
                     </a>
                   </div>
@@ -487,8 +508,7 @@ export default function LandingPage() {
               <Col md="4">
                 <hr className="line-info" />
                 <h1>
-                  Choose the coin
-                  {' '}
+                  Choose the coin{' '}
                   <span className="text-info">that fits your needs</span>
                 </h1>
               </Col>
