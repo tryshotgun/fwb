@@ -43,7 +43,7 @@ import { chartExample1 } from 'variables/charts.js';
 export default function LandingPage() {
   const wrapper = React.useRef(null);
   const { search } = useLocation(null);
-  const [token, setToken] = useState(null);
+  const [response, setResponse] = useState(null);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -62,15 +62,16 @@ export default function LandingPage() {
     const code = params.get('code');
     const state = params.get('state');
 
-    console.log(`Code: ${code}`, `State: ${state}`);
-
-    let response = await fetch('http://localhost:8888/callback');
+    let response = await fetch(
+      `http://localhost:8888/callback?code=${code}&state=${state}`,
+    );
     response = await response.json();
-    setToken(response);
+
+    setResponse(response);
   }, [search]);
 
   useEffect(() => {
-    getToken().catch(console.log);
+    getToken().catch(console.error);
   }, [getToken]);
 
   return (
