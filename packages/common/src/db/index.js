@@ -1,3 +1,2 @@
-import client from './scylla';
-
-export default client;
+export * from './scylla/scylla-client';
+export * from './scylla/scylla-object-mapper';
