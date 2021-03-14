@@ -1,0 +1,35 @@
+Resources:
+  UserTable:    # Logical Id of the resource
+    Type: AWS::DynamoDB::Table
+
+    Properties:
+      AttributeDefinitions:
+        # - AttributeName: id
+        #   AttributeType: S
+        - AttributeName: spotify_id
+          AttributeType: N
+        # - AttributeName: display_name
+        #   AttributeType: S
+        # - AttributeName: profile_image_url
+        #   AttributeType: S
+        # - AttributeName: email
+        #   AttributeType: S
+        # - AttributeName: phone_number
+        #   AttributeType: N 
+        - AttributeName: country_code
+          AttributeType: S
+        # - AttributeName: spotify_uri
+        #   AttributeType: S 
+      # https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/
+      # Good read on partition and sort keys
+      KeySchema:
+        - AttributeName: spotify_id # Partition Key
+          KeyType: HASH
+        - AttributeName: country_code # Sort Key
+          KeyType: RANGE
+
+      TableName: User    
+
+      ProvisionedThroughput: # Optional, can be skipped
+        ReadCapacityUnits: 10
+        WriteCapacityUnits: 10
