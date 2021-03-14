@@ -19,6 +19,14 @@ export class ScyllaClient {
   }
 
   /**
+   * Closes the client connection.
+   */
+  static async close() {
+    await ScyllaClient.#client.shutdown();
+    ScyllaClient.#client = null;
+  }
+
+  /**
    * Connect to the cluster using the client and set up the initial keyspace.
    * @param {Client} client The scylla client.
    * @param {ScyllaClientConfig} config The configuration object.

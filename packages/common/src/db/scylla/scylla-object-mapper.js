@@ -9,8 +9,10 @@ export class ScyllaObjectMapper {
   /** @type {Mapper} The global mapper instance */
   static #mapper;
 
+  #modelName;
+
   constructor(modelName) {
-    this.modelName = modelName;
+    this.#modelName = modelName;
   }
 
   /**
@@ -23,7 +25,7 @@ export class ScyllaObjectMapper {
   }
 
   get() {
-    return ScyllaObjectMapper.#mapper.forModel(this.modelName);
+    return ScyllaObjectMapper.#mapper.forModel(this.#modelName);
   }
 }
 

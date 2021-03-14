@@ -8,7 +8,7 @@ describe('ScyllaClient', () => {
   let validConfig;
 
   beforeAll(async () => {
-    jest.setTimeout(60 * 1000);
+    jest.setTimeout(40 * 1000);
     container = await new GenericContainer('scylladb/scylla')
       .withExposedPorts(CONTAINER_PORT)
       .withWaitStrategy(Wait.forLogMessage('initialization completed.'))
@@ -25,6 +25,8 @@ describe('ScyllaClient', () => {
 
   afterAll(async () => {
     await container.stop();
+    await ScyllaClient.close();
+    jest.setTimeout(5000);
   });
 
   test('consumes the config to create a client connection', async () => {
