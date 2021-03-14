@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 
 import { Container } from 'reactstrap';
 
-import ColorNavbar from 'components/Navbars/ColorNavbar.js';
 import DemoFooter from 'components/Footers/DemoFooter.js';
 import ProfileCard from 'components/Swipe/ProfileCard';
 import 'components/Swipe/ProfileCard.css';
@@ -22,7 +21,6 @@ const SwipePage = () => {
 
   return (
     <>
-      {/* <ColorNavbar /> */}
       <div className="wrapper" ref={wrapper}>
         <>
           <div className="page-header">
@@ -38,7 +36,6 @@ const SwipePage = () => {
             </Container>
           </div>
         </>
-
         <DemoFooter />
       </div>
     </>

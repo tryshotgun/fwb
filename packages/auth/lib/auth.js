@@ -96,7 +96,7 @@ app.get('/callback', (req, res) => {
 
   request.post(authOptions, (error, response, body) => {
     if (!error && response.statusCode === 200) {
-      // we can also pass the token to the browser to make requests from there
+      // pass response containing token to browser
       res.json(body);
     } else {
       res.json({

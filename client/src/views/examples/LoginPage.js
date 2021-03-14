@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from 'react';
+import React, { useEffect } from 'react';
 // nodejs library that concatenates classes
 import classnames from 'classnames';
 // reactstrap components
@@ -40,10 +40,20 @@ import ColorNavbar from 'components/Navbars/ColorNavbar.js';
 import DemoFooter from 'components/Footers/DemoFooter.js';
 import constants from 'variables/constants.js';
 
+const LAUNCH_URL =
+  constants.SPOTIFY_AUTH_URL +
+  new URLSearchParams({
+    client_id: constants.CLIENT_ID,
+    redirect_uri: constants.REDIRECT_URI,
+    scope: constants.SCOPE,
+    response_type: constants.RESPONSE_TYPE,
+  });
+
 export default function LoginPage() {
   const [firstNameFocus, setFirstNameFocus] = React.useState(undefined);
   const [lastNameFocus, setLastNameFocus] = React.useState(undefined);
-  React.useEffect(() => {
+
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     document.body.classList.add('login-page');
@@ -124,7 +134,7 @@ export default function LoginPage() {
                     block
                     className="btn-round"
                     color="primary"
-                    href={constants.LAUNCH_URL}
+                    href={LAUNCH_URL}
                   >
                     Login With Spotify
                   </Button>

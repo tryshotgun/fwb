@@ -18,6 +18,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 // react plugin used to create charts
 import { Line } from 'react-chartjs-2';
+import constants from 'variables/constants.js';
 
 // reactstrap components
 import {
@@ -63,11 +64,13 @@ export default function LandingPage() {
     const state = params.get('state');
 
     let response = await fetch(
-      `http://localhost:8888/callback?code=${code}&state=${state}`,
+      `${constants.AUTH_API_HOST}:${constants.AUTH_API_PORT}${constants.AUTH_API_ENDPOINT}` +
+        new URLSearchParams({ code, state }),
     );
     response = await response.json();
 
     setResponse(response);
+    console.log(response);
   }, [search]);
 
   useEffect(() => {
