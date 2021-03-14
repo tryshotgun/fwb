@@ -38,6 +38,7 @@ import {
 // core components
 import ColorNavbar from 'components/Navbars/ColorNavbar.js';
 import DemoFooter from 'components/Footers/DemoFooter.js';
+import constants from 'variables/constants.js';
 
 export default function LoginPage() {
   const [firstNameFocus, setFirstNameFocus] = React.useState(undefined);
@@ -118,6 +119,14 @@ export default function LoginPage() {
                     size="lg"
                   >
                     Get Started
+                  </Button>
+                  <Button
+                    block
+                    className="btn-round"
+                    color="primary"
+                    href={constants.LAUNCH_URL}
+                  >
+                    Login With Spotify
                   </Button>
                 </CardFooter>
                 <div className="pull-left ml-3 mb-3">
