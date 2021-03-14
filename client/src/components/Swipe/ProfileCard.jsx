@@ -2,31 +2,38 @@ import React, { useState, useMemo } from 'react';
 import { Button } from 'reactstrap';
 import TinderCard from 'react-tinder-card';
 import './ProfileCard.css';
+import denys from 'assets/img/denys.jpg';
+import fabien from 'assets/img/fabien-bazanegue.jpg';
+import braden from 'assets/img/braden-collum.jpg';
+import john from 'assets/img/john-price.jpg';
+import chester from 'assets/img/chester-wade.jpg';
 
 const db = [
   {
     name: 'Cory',
-    url: require('assets/img/denys.jpg').default,
+    url: denys,
   },
   {
     name: 'Kevin',
-    url: require('assets/img/fabien-bazanegue.jpg').default,
+    url: fabien,
   },
   {
     name: 'Ed',
-    url: require('assets/img/braden-collum.jpg').default,
+    url: braden,
   },
   {
     name: 'Perry',
-    url: require('assets/img/john-price.jpg').default,
+    url: john,
   },
   {
     name: 'Irving',
-    url: require('assets/img/chester-wade.jpg').default,
+    url: chester,
   },
 ];
 
-let charactersState = db; // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
+// This fixes issues with updating characters state forcing it to
+// use the current state and not the state that was active when the card was created.
+let charactersState = db;
 
 const ProfileCard = () => {
   const [characters, setCharacters] = useState(db);
@@ -34,21 +41,19 @@ const ProfileCard = () => {
   const [alreadyRemoved, setAlreadyRemoved] = useState([]);
 
   const childRefs = useMemo(
-    () =>
-      Array(db.length)
-        .fill(0)
-        .map((i) => React.createRef()),
+    () => Array(db.length)
+      .fill(0)
+    // eslint-disable-next-line no-unused-vars
+      .map((i) => React.createRef()),
     [],
   );
 
   const swiped = (direction, nameToDelete) => {
-    console.log('removing: ' + nameToDelete);
     setLastDirection(direction);
     setAlreadyRemoved((oldArray) => [...oldArray, nameToDelete]);
   };
 
   const outOfFrame = (name) => {
-    console.log(name + ' left the screen!');
     charactersState = charactersState.filter(
       (character) => character.name !== name,
     );
@@ -60,10 +65,17 @@ const ProfileCard = () => {
       (person) => !alreadyRemoved.includes(person.name),
     );
     if (cardsLeft.length) {
-      const toBeRemoved = cardsLeft[cardsLeft.length - 1].name; // Find the card object to be removed
-      const index = db.map((person) => person.name).indexOf(toBeRemoved); // Find the index of which to make the reference to
-      setAlreadyRemoved((oldArray) => [...oldArray, toBeRemoved]); // Make sure the next card gets removed next time if this card do not have time to exit the screen
-      childRefs[index].current.swipe(dir); // Swipe the card!
+      // Find the card object to be removed
+      const toBeRemoved = cardsLeft[cardsLeft.length - 1].name;
+
+      // Find the index of which to make the reference to
+      const index = db.map((person) => person.name).indexOf(toBeRemoved);
+
+      // Make sure the next card gets removed next time if
+      // this card do not have time to exit the screen
+      setAlreadyRemoved((oldArray) => [...oldArray, toBeRemoved]);
+      // Swipe the card!
+      childRefs[index].current.swipe(dir);
     }
   };
 
@@ -80,7 +92,7 @@ const ProfileCard = () => {
             onCardLeftScreen={() => outOfFrame(character.name)}
           >
             <div
-              style={{ backgroundImage: 'url(' + character.url + ')' }}
+              style={{ backgroundImage: `url(${character.url})` }}
               className="card"
             >
               <h3>{character.name}</h3>
@@ -98,7 +110,9 @@ const ProfileCard = () => {
       </div>
       {lastDirection ? (
         <h2 key={lastDirection} className="infoText">
-          You swiped {lastDirection}
+          You swiped
+          {' '}
+          {lastDirection}
         </h2>
       ) : (
         <h2 className="infoText">

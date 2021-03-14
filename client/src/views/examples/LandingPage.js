@@ -70,7 +70,6 @@ export default function LandingPage() {
     response = await response.json();
 
     setResponse(response);
-    console.log(response);
   }, [search]);
 
   useEffect(() => {

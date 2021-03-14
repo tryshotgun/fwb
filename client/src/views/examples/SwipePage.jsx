@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { Container } from 'reactstrap';
 
-import DemoFooter from 'components/Footers/DemoFooter.js';
+import DemoFooter from 'components/Footers/DemoFooter';
 import ProfileCard from 'components/Swipe/ProfileCard';
 import 'components/Swipe/ProfileCard.css';
 
