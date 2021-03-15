@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Button } from 'reactstrap';
 import TinderCard from 'react-tinder-card';
-import './ProfileCard.css';
+import 'assets/css/profile-card.css';
 import denys from 'assets/img/denys.jpg';
 import fabien from 'assets/img/fabien-bazanegue.jpg';
 import braden from 'assets/img/braden-collum.jpg';
@@ -82,7 +82,7 @@ const ProfileCard = () => {
   return (
     <div>
       <h1 className="profile-title text-left">Shotgun</h1>
-      <div className="cardContainer">
+      <div className="swipe-card-container">
         {characters.map((character, index) => (
           <TinderCard
             ref={childRefs[index]}
@@ -93,7 +93,7 @@ const ProfileCard = () => {
           >
             <div
               style={{ backgroundImage: `url(${character.url})` }}
-              className="card"
+              className="swipe-card"
             >
               <h3>{character.name}</h3>
             </div>
@@ -109,13 +109,13 @@ const ProfileCard = () => {
         </Button>
       </div>
       {lastDirection ? (
-        <h2 key={lastDirection} className="infoText">
+        <h2 key={lastDirection} className="info-text">
           You swiped
           {' '}
           {lastDirection}
         </h2>
       ) : (
-        <h2 className="infoText">
+        <h2 className="info-text">
           Swipe a card or press a button to get started!
         </h2>
       )}
