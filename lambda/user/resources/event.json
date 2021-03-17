@@ -1,5 +1,38 @@
 {
+  "version": "2.0",
+  "routeKey": "GET /users",
+  "rawPath": "/users",
+  "rawQueryString": "authorization_token=BQC55kUyIonVMDOg0T8LzFIT16-Uiu0-Z2LO-en4pFlhUVgToiyzkbogRGveMVzFsy4eeClkFBsVV0GCHKNm-fHvM53fsGpPfjlGNo8bGWkYvjLKwx61z3QNbMgqcdo2XTbo5yx_SyoH6t_HQlIi-8Kzn-0KNWC5-o-_BYnhx1lYhaA02eT7avNh2rxdq8fFkyeHAbMiLaGIgrX9-nTZ2c_uJr9MT1SshPCeh4ba4FwBeFxrPRVzWyNxeH-Dh_ReF3SMQ-zoXg",
+  "headers": {
+    "accept": "*/*",
+    "content-length": "0",
+    "host": "a5tihf90yd.execute-api.us-east-1.amazonaws.com",
+    "user-agent": "curl/7.64.1",
+    "x-amzn-trace-id": "Root=1-604fccdb-7613642a61ba80c129d91e87",
+    "x-forwarded-for": "108.56.195.8",
+    "x-forwarded-port": "443",
+    "x-forwarded-proto": "https"
+  },
   "queryStringParameters": {
-    "key": "value"
-  }
+    "authorization_token": "BQCdaCvyg-q6vJeTCSGF2wkHGH3rW0rS9XAHW2SBV26rOTtaC0ucYjNrBBGNA23nx2beLPR3Ha7khyYLTQZOFBGtDin83LdgLtNA39kdwEHGC2NAR60uy3k4ca50SVoyjIRhhFzKvPjznmb-W3Cw3nagujz65UhUIWHPpWT5fg5IUj5SScFabeBdajZsz5tpRr4Zj4KDxwq0Rh2B16IDngdchssCPXuchajO5yxiBqfTbUJp93MO3doA_QyygzYc4GTsGaGQgw"
+  },
+  "requestContext": {
+    "accountId": "909340227214",
+    "apiId": "a5tihf90yd",
+    "domainName": "a5tihf90yd.execute-api.us-east-1.amazonaws.com",
+    "domainPrefix": "a5tihf90yd",
+    "http": {
+      "method": "GET",
+      "path": "/users",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "108.56.195.8",
+      "userAgent": "curl/7.64.1"
+    },
+    "requestId": "cPzyUg4nIAMEMdw=",
+    "routeKey": "GET /users",
+    "stage": "$default",
+    "time": "15/Mar/2021:21:08:43 +0000",
+    "timeEpoch": 1615842523527
+  },
+  "isBase64Encoded": false
 }
