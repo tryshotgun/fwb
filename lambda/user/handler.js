@@ -3,7 +3,8 @@ const axios = require('axios');
 
 const docClient = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
 
-const TABLE_NAME = 'User';
+const AWS_DB_TABLE_NAME = 'User';
+const AWS_SCAN_FOR_ALL_ATTRIBUTES = 'ALL_ATTRIBUTES';
 const SPOTIFY_CURRENT_USER_INFO_URL = 'https://api.spotify.com/v1/me';
 
 /**
@@ -29,7 +30,7 @@ module.exports.createNewUser = async (event) => {
       .catch((error) => error);
 
     const params = {
-      TableName: TABLE_NAME,
+      TableName: AWS_DB_TABLE_NAME,
       Item: {
         spotify_id: +spotifyData.id,
         country_code: spotifyData.country,
@@ -80,17 +81,54 @@ module.exports.getUserInfo = async (event) => {
       .then((response) => response.data)
       .catch((error) => error);
 
-    // Save to dynamoDB
-    const result = JSON.stringify(
-      {
-        message: spotifyData,
-        input: event,
-      },
-    );
+    return {
+      statusCode: 200,
+      body: JSON.stringify(
+        {
+          result: spotifyData,
+          input: event,
+        },
+      ),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify(
+        {
+          message: error,
+          input: event,
+        },
+      ),
+    };
+  }
+};
+
+/** Get all users */
+module.exports.getAllUsers = async (event) => {
+  try {
+    // let authToken;
+    // if (event.queryStringParameters && event.queryStringParameters.authorization_token) {
+    //   authToken = event.queryStringParameters.authorization_token;
+    // }
+
+    // TODO
+    // Check whether auth token is still valid
+
+    const params = {
+      TableName: AWS_DB_TABLE_NAME,
+      Select: AWS_SCAN_FOR_ALL_ATTRIBUTES,
+    };
+
+    const allUsers = await docClient.scan(params).promise();
 
     return {
       statusCode: 200,
-      body: result,
+      body: JSON.stringify(
+        {
+          result: allUsers,
+          input: event,
+        },
+      ),
     };
   } catch (error) {
     return {
